@@ -1,0 +1,39 @@
+language: node_js
+sudo: required
+node_js: 
+  - 12.16.1
+
+addons:
+  apt:
+    packages:
+      - ncftp
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+    - master 
+
+before_install:
+  - npm install -g hexo
+
+# S: Build Lifecycle
+install:
+  - npm install
+  # - npm install hexo-deployer-git --save
+
+# before_script:
+ # - npm install -g gulp
+
+script:
+  - hexo clean
+  - hexo generate
+
+after_script:
+  - git config user.name "a3d21"
+  - git config user.email "a3d21@outlook.com"
+  - sed -i "s/GH_TOKEN/${GH_TOKEN}/g" ./_config.yml
+  - hexo deploy
+  # - ncftpput -u ${FTP_USER} -p ${FTP_PASSWORD} -P 8010 -R a2dict.ftp-gz01.bcehost.com webroot public/*

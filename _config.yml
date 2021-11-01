@@ -103,6 +103,6 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: git@github.com:a3d21/a3d21.github.io.git
-  # repository: https://gh_token@github.com/a3d21/a3d21.github.io.git
+  # repository: git@github.com:a3d21/a3d21.github.io.git
+  repository: https://GH_TOKEN@github.com/a3d21/a3d21.github.io.git
   branch: master
