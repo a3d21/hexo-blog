@@ -52,9 +52,9 @@ package GoCQRS {
     QueryGateway <|.. CQRSSystem
     EventSourcingRepository --> EventStore
     EventSourcingRepository -> Aggregate
+    EventSourcingRepository -> Snapshoter
     EventStore --> EventRepository
     EventStore --> EventBus
-    CQRSSystem -> Snapshoter
     CQRSSystem ---> EventSourcingRepository
     CQRSSystem --> CommandBus
 }
