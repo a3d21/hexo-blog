@@ -6,4 +6,6 @@ tags: 编程
 
 这是一个之前分享过的Slides。
 
+<!-- more -->
+
 <iframe src="https://hackmd.io/@J19CM3_0SGWcJoNTNSk2MA/SkRwhmTaK" height="600px" width="100%" align="center"></iframe>

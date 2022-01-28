@@ -6,6 +6,8 @@ tags: 编程
 
 最近工作中想基于Event Sourcing重新设计计费系统。团队主要采用Go技术栈，而Go生态不成熟，缺少成熟CQRS框架实现，所以想着自己动手写个。参考[Axon](https://axoniq.io/)，整体设计如下。
 
+<!-- more -->
+
 ```plantuml
 @startuml
 
