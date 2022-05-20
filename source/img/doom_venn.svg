@@ -1,0 +1,44 @@
+<svg height="286" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="474" viewBox="0 0 474 286">
+    <defs/>
+    <g transform="translate(-311.03,-216.06)">
+        <path stroke="#323232" fill-opacity="0.40" fill-rule="nonzero" id="shape1" d="M.0,142.0C.0,63.6,63.4,.0,141.6,.0C219.8,.0,283.2,63.6,283.2,142.0C283.2,220.4,219.8,284.0,141.6,284.0C63.4,284.0,.0,220.4,.0,142.0z" transform="translate(312.03,217.06)" fill="#999999"/>
+        <path stroke="#582b16" fill-opacity="0.40" fill-rule="nonzero" id="shape2" d="M.0,142.0C.0,63.6,63.4,.0,141.6,.0C219.8,.0,283.2,63.6,283.2,142.0C283.2,220.4,219.8,284.0,141.6,284.0C63.4,284.0,.0,220.4,.0,142.0z" transform="translate(500.83,217.06)" fill="#fd8851"/>
+        <g id="shape3" transform="translate(340.35,283.32)">
+            <text xml:space="preserve" style="fill:#191919;font-family:Courier;font-size:10.50pt">
+                <tspan x="12.5" y="55.7">末日降临，预言家未</tspan>
+                <tspan x="12.5" y="75.7">预言正确（至少其中</tspan>
+                <tspan x="29.3" y="95.7">一人预言错了)</tspan>
+                <tspan x="29.4" y="109.7">1 - 0.9*0.3</tspan>
+            </text>
+        </g>
+        <g id="shape4" transform="translate(608.45,283.32)">
+            <text xml:space="preserve" style="fill:#191919;font-family:Courier;font-size:10.50pt">
+                <tspan x="12.5" y="48.7">两预言家都预言末日</tspan>
+                <tspan x="12.5" y="68.7">降临，但末日不降临</tspan>
+                <tspan x="11.1" y="88.7">(预言家都预言错了)</tspan>
+                <tspan x="8.4" y="102.7">0.1 * 0.7 = 0.07</tspan>
+            </text>
+        </g>
+        <g id="shape5" transform="translate(510.27,290.89)">
+            <text xml:space="preserve" style="fill:#191919;font-family:Courier;font-size:10.50pt">
+                <tspan x="16.8" y="34.2">末日降</tspan>
+                <tspan x="9.8" y="54.2">临，且预</tspan>
+                <tspan x="16.8" y="74.2">言正确</tspan>
+                <tspan x="16.8" y="88.2">0.9 * </tspan>
+                <tspan x="16.8" y="102.2">0.3 = </tspan>
+                <tspan x="21.0" y="116.2">0.27</tspan>
+            </text>
+        </g>
+        <g id="shape6" transform="translate(393.63,217.06)">
+            <text xml:space="preserve" style="fill:#191919;font-family:Courier;font-size:9.75pt;font-weight:bold">
+                <tspan x="34.0" y="46.5">末日降临</tspan>
+            </text>
+        </g>
+        <g id="shape7" transform="translate(582.43,217.06)">
+            <text xml:space="preserve" style="fill:#191919;font-family:Courier;font-size:9.75pt;font-weight:bold">
+                <tspan x="8.0" y="37.0">两预言家都预言末</tspan>
+                <tspan x="40.5" y="56.0">日降临</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
