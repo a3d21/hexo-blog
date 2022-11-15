@@ -27,8 +27,8 @@ func MustBind[T any](cli config_client.IConfigClient, dataID, group string, typ 
 使用Demo
 ```go
 type ConfigStruct struct {
-	Name string
-	City string
+	Name string `json:"name" yaml:"name"`
+	City string `json:"city" yaml:"city"`
 }
 
 func main() {
@@ -37,11 +37,15 @@ func main() {
 	group := "def"
 	var GetConf = bind_nacos_cfg.MustBind(cli, dataID, group, &ConfigStruct{})
 	// 也支持原生结构类型
-	// var GetConf = bind_nacos_cfg.MustBind(cli, dataID, group, StructConfig{})
+	// var GetConf = bind_nacos_cfg.MustBind(cli, dataID, group, ConfigStruct{})
 	// var GetConf = bind_nacos_cfg.MustBind(cli, dataID, group, map[string]string{})
 	// var GetConf = bind_nacos_cfg.MustBind(cli, dataID, group, []string{})
+	// 绑定并监听变更。考虑到存在需要监听配置做额外操作的场景，增加的可选Listner[T]参数
+	// var GetConf = bind_nacos_cfg.MustBind(cli, dataID, group, &ConfigStruct{}, func(v *ConfigStruct) {
+	// 	 fmt.Println(v)
+	// })
 
-    // c.(type) == *ConfigStruct
+	// c.(type) == *ConfigStruct
 	c := GetConf() // 获取最新配置
 	c = GetConf()
 	c = GetConf() // 配置变更自动监听更新
