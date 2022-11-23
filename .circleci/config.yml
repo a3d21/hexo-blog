@@ -1,0 +1,39 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/repo
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: node:18
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-modules-v4-{{ checksum "package.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install hexo-cli -g && npm install
+      - save_cache:
+          key: node-modules-v4-{{ checksum "package.json" }}
+          paths:
+            - "~/repo/node_modules"
+      - run:
+          name: Run Hexo Generate
+          command: hexo g
+      - run:
+          name: Git Config
+          command: git config --global user.name "a3d21" && git config --global user.email "a3d21@outlook.com"
+      - run:
+          name: Hexo Deploy
+          command: sed -i "s/GH_TOKEN/${GH_TOKEN}/" _config.yml && hexo deploy
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  deploy:
+    jobs:
+      - build
