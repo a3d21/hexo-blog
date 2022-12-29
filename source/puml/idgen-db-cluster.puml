@@ -1,0 +1,51 @@
+@startuml
+!include <C4/C4_Deployment>
+HIDE_STEREOTYPE()
+
+System_Ext(cli, "Client", "请求客户端")
+
+System_Boundary(c1, "ID生成器"){ 
+    Deployment_Node(idgen, "IDGenerator", "服务集群") {
+        Container(idgen1, "IDGenerator-01", "HTTP, RPC", "ID生成器服务")
+        Container(idgen2, "IDGenerator-02", "HTTP, RPC", "ID生成器服务")
+    }
+
+    Deployment_Node(db, "Database Cluster", "DB集群"){
+        Deployment_Node(dbg1, "Group 1", "主从"){
+            ContainerDb(db1, "Database", "mysql-01", "")
+            ContainerDb_Ext(db1_1, "Database", "slave-01")
+            ContainerDb_Ext(db1_2, "Database", "slave-02")
+        }
+        Deployment_Node(dbg2, "Group 2", "主从"){
+            ContainerDb(db2, "Database", "mysql-02", "")
+            ContainerDb_Ext(db2_1, "Database", "slave-01")
+            ContainerDb_Ext(db2_2, "Database", "slave-02")
+        }    
+        Deployment_Node(dbg3, "Group 3", "主从"){
+            ContainerDb(db3, "Database", "mysql-03", "")
+            ContainerDb_Ext(db3_1, "Database", "slave-01")
+            ContainerDb_Ext(db3_2, "Database", "slave-02")
+        }
+    
+    }
+}
+
+Rel(cli, idgen1,"1 申请ID")
+Rel(idgen1, db1, "2 随机选择实例插入记录")
+Rel(idgen1, db2,"")
+Rel(idgen1, db3, "")
+
+Lay_D(cli, c1)
+Lay_R(idgen1, idgen2)
+Lay_R(db1, db2)
+Lay_R(db2, db3)
+Lay_D(idgen, db)
+Rel_D(db1, db1_1, "sync")
+Rel_D(db1, db1_2, "sync")
+Rel_D(db2, db2_1, "sync")
+Rel_D(db2, db2_2, "sync")
+Rel_D(db3, db3_1, "sync")
+Rel_D(db3, db3_2, "sync")
+
+' SHOW_LEGEND()
+@enduml
