@@ -10,9 +10,34 @@ tags: [编程, 测试]
 
 ## 工具方法测试
 目的：测试工具包、静态方法功能和边界条件。
-如何编写： 使用[gotests](https://github.com/cweill/gotests)，或者IDE自动生成
+如何编写： 使用[gotests](https://github.com/cweill/gotests)，或者IDE自动生成。
 
 ```go
+func TestPartitionBy(t *testing.T) {
+	type args struct {
+		vs   interface{}
+		size int
+	}
+	tests := []struct {
+		name string
+		args args
+		want interface{}
+	}{
+		{"empty slice", args{[]int{}, 1}, [][]int{}},
+		{"by 1", args{[]int{1, 2, 3}, 1}, [][]int{{1}, {2}, {3}}},
+		{"by 2", args{[]int{1, 2, 3}, 2}, [][]int{{1, 2}, {3}}},
+		{"by 3", args{[]int{1, 2, 3}, 3}, [][]int{{1, 2, 3}}},
+		{"by 4", args{[]int{1, 2, 3}, 4}, [][]int{{1, 2, 3}}},
+		{"by 5", args{[]int{1, 2, 3}, 5}, [][]int{{1, 2, 3}}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := PartitionBy(tt.args.vs, tt.args.size); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("PartitionBy() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 // PartitionBy 对slice按size分区
 func PartitionBy(vs interface{}, size int) interface{} {
 	if size < 1 {
@@ -40,33 +65,6 @@ func PartitionBy(vs interface{}, size int) interface{} {
 
 	return resultValue.Interface()
 }
-
-func TestPartitionBy(t *testing.T) {
-	type args struct {
-		vs   interface{}
-		size int
-	}
-	tests := []struct {
-		name string
-		args args
-		want interface{}
-	}{
-		{"empty slice", args{[]int{}, 1}, [][]int{}},
-		{"by 1", args{[]int{1, 2, 3}, 1}, [][]int{{1}, {2}, {3}}},
-		{"by 2", args{[]int{1, 2, 3}, 2}, [][]int{{1, 2}, {3}}},
-		{"by 3", args{[]int{1, 2, 3}, 3}, [][]int{{1, 2, 3}}},
-		{"by 4", args{[]int{1, 2, 3}, 4}, [][]int{{1, 2, 3}}},
-		{"by 5", args{[]int{1, 2, 3}, 5}, [][]int{{1, 2, 3}}},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := PartitionBy(tt.args.vs, tt.args.size); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("PartitionBy() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 ```
 
 ## 属性测试
@@ -99,7 +97,6 @@ func TestBase64EncodeDecodeSpec(t *testing.T) {
 一个 Suite由Setup（初始化）、Test（测试）、TearDown（清理）组成，适用于测试对环境有依赖的组件，比如RedisClient、DB ORM等。
 
 ```go
-
 type RedisClientTestSuite struct {
 	suite.Suite
 
