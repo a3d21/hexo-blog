@@ -1,0 +1,54 @@
+@startuml
+
+package GoCQRS {
+    interface CommandGateway {
+        命令网关
+        SendAndWait(ctx context.Context, cmd interface{}) (result interface{}, err error)
+    }
+    interface QueryGateway {
+        查询网关
+        Query(ctx context.Context, id string)(Aggregate, error)
+    }
+
+    class CQRSSystem
+    abstract CommandBus {
+        推送命令
+    }
+
+    abstract EventBus {
+        负责推送Event
+    }
+    abstract EventSourcingRepository {
+        Load(ctx context.Context, aggregateID string) (Aggregate, error) //加载Aggregate
+    }
+    
+    abstract EventStore {
+        负责持久化并推送Event
+        Save(ctx context.Context, cmd *Command, evts []*Event) error
+        Load(ctx context.Context, aggregateID string) ([]*Event, error)
+    }
+    interface EventRepository {
+        负责Event持久化
+    }
+    abstract Aggregate {
+        ID() string //AggregateID
+        Apply(ctx context.Context, evt *Event) error //Apply事件
+        State() interface{} //状态
+    }
+
+    abstract Snapshoter {
+        负责快照机制
+    }
+    CommandGateway <|.. CQRSSystem
+    QueryGateway <|.. CQRSSystem
+    EventSourcingRepository --> EventStore
+    EventSourcingRepository -> Aggregate
+    EventSourcingRepository -> Snapshoter
+    EventStore --> EventRepository
+    EventStore --> EventBus
+    CQRSSystem ---> EventSourcingRepository
+    CQRSSystem --> CommandBus
+}
+
+
+@enduml
