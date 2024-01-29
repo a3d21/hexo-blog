@@ -6,6 +6,7 @@ tags: tech
 
 记录&分享K8s Gitlab CI/CD搭建过程。
 
+
 <!-- more -->
 
 ## 1 helm安装gitlab runner
