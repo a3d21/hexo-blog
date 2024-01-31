@@ -1,7 +1,7 @@
 ---
 title: K8s Gitlab CI/CD
 date: 2024-01-29 18:25:26
-tags: tech
+tags: [tech, k8s]
 ---
 
 记录&分享K8s Gitlab CI/CD搭建过程。

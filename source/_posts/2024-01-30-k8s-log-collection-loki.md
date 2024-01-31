@@ -1,7 +1,7 @@
 ---
 title: K8s日志收集Loki
 date: 2024-01-30 11:11:53
-tags: tech
+tags: [tech, k8s]
 ---
 
 主流的K8s日志收集方案ELK需要部署es集群，很重，需要的机器资源比我们运行服务的机器还多。
