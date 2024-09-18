@@ -42,7 +42,7 @@ reboot
 ## 4 docker跑gitlab-ce
 ```sh
 GITLAB_HOME="/gitlabdata"
-docker run --detach --hostname gitlab.52mengdong.com  \
+docker run --detach --hostname git.xxx.com  \
     --env GITLAB_OMNIBUS_CONFIG="external_url 'http://git.xxx.com'" \       # 自定义域名，指向本机器
     --env TZ="Asia/Shanghai"   -v /etc/localtime:/etc/localtime  \
     --publish 443:443 --publish 80:80 --publish 22:22 --publish 5050:5050 \
