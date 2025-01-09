@@ -64,6 +64,7 @@ kubectl -n loki get statefulsets.apps loki -o yaml
 
 ```yaml
 # demo statefulsets
+# 更新 2024-09-03 如果单实例的话，建议使用nfs挂载
 volumeClaimTemplates:
   - metadata:
       name: storage
