@@ -1,0 +1,13 @@
+@startuml
+scale 4
+
+'scale 1.5 | scale 200 width | scale 100 height | scale [max] 200x100
+rectangle "A平台设备\n(带红外音箱)" as a
+rectangle "IR接收器" as ir
+rectangle "Home Assistant\n(控制中心)" as ha
+rectangle "B平台设备" as b
+
+a -> ir: "发送自定义IR命令"
+ir -> ha: "传递"
+ha -> b: "控制"
+@enduml

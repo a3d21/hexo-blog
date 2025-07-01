@@ -1,0 +1,21 @@
+@startuml
+scale 4
+actor User as u
+
+box "书房"
+participant "书房音箱\n(不带IR)" as s2
+participant "书房IR接收器" as ir2
+participant "书房风扇" as fan
+end box
+
+box "客厅"
+participant "客厅音箱\n(带IR)" as s1
+participant "客厅IR接收器" as ir1
+end box
+
+u -> s2: say:开风扇
+s2 --> s1: 云调用
+s1 -> ir1: 发IR
+ir1->ir2: 中继
+ir2 -> fan: 控制
+@enduml
