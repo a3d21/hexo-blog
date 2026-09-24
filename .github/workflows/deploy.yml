@@ -1,0 +1,35 @@
+name: Deploy Hexo Blog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm install hexo-cli -g && npm install
+
+      - name: Generate
+        run: hexo g
+
+      - name: Deploy
+        run: |
+          git config --global user.name "a3d21"
+          git config --global user.email "a3d21@outlook.com"
+          sed -i "s/GH_TOKEN/${GH_TOKEN}/" _config.yml
+          hexo deploy
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
